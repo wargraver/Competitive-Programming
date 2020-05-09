@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main(){
+  ll i,j,k,n,m,ct=0,t,ans=0;
+  cin>>n>>m;
+  unordered_map<ll,ll> dict;
+  ll a[n];
+  for(i=0;i<n;i++){
+  	cin>>a[i];
+  	if(dict.find(a[i])!=dict.end()) dict[a[i]]++;
+  	else dict.insert({a[i],1});
+  }
+  ll max1=0,b[n]={0};
+  for(auto it=dict.begin();it!=dict.end();it++) max1=max(it->second,max1);
+  if(max1<=m && n>=m){
+  	cout<<"YES"<<endl;
+  	k=1;ll flag=0;
+  	for(i=0;i<n;i++){
+  		if(k>m) k=1;
+  		if(b[i]==0){b[i]=k;k++;
+		  }
+  		for(j=i+1;j<n;j++){
+  			if(a[j]==a[i] && b[j]==0){
+  				if(k>m) k=1;
+  				//cout<<i<<" "<<j<<" "<<k<<endl;
+				b[j]=k;
+				k++;
+			  }
+		  }
+	  }
+	  for(int x:b) cout<<x<<" ";
+  }
+  else cout<<"NO"<<endl;
+  return 0;
+}
