@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll max1 =(ll)1e9;
+int main(){
+  ll i,j,k,n,m,ct=0,t,ans=0,a,b,c,d;
+  cin>>n>>a>>b>>c>>d;
+  for(i=1;i<=n;i++){
+  	vector<int> vec;
+  	vec.push_back(a+b+i);vec.push_back(b+d+i);
+	vec.push_back(d+c+i);vec.push_back(a+c+i);
+  	sort(vec.begin(),vec.end());
+  	ll max_sum=vec[0]+n;
+  	ll min_sum=vec[3]+1;
+  	if(max_sum>=min_sum) ans+=(max_sum-min_sum)+1;
+  	else ans+=0;
+  }
+  cout<<ans<<endl;
+  return 0;
+}
