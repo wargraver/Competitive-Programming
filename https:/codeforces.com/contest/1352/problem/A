@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll max1 =(ll)1e9;
+int main(){
+  ll i,j,k,n,m,ct=0,t,ans=0;
+  cin>>t;
+  while(t--){
+  	cin>>n;
+  	i=0;j=n;
+  	vector<ll> vec;
+  	while(j!=0){
+  		k=j%10;
+  		j=j/10;
+  		m=k*pow(10,i);
+  		if(m!=0) vec.push_back(m);
+  		i++;
+	  }
+	  cout<<vec.size()<<endl;
+	  for(ll x:vec) cout<<x<<" ";
+	  cout<<endl;
+  }
+  return 0;
+}
