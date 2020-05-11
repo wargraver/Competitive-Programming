@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll max1 =(ll)1e9;
+int main(){
+  ll i,j,k,n,m,ct=0,t,ans=0,flag=0;
+  cin>>t;
+  while(t--){
+  	cin>>n;
+  	int a[n];
+  	for(i=0;i<n;i++) cin>>a[i];
+  	int prev_left=0,prev_right=0,left_sum=0,right_sum=0;
+  	j=0;k=n-1;i=0;
+  	while(j<=k){
+  		if(i%2==0){
+  			ll sum=0;
+  			while(prev_right>=sum && j<=k){
+  				sum+=a[j];j++;
+			  }
+			  left_sum+=sum;
+			  prev_left=sum;
+		  }
+		else{
+			ll sum=0;
+			while(prev_left>=sum && j<=k){
+				sum+=a[k];k--;
+			}
+			right_sum+=sum;
+			prev_right=sum;
+		}
+		i++;
+	  }
+	  cout<<i<<" "<<left_sum<<" "<<right_sum<<endl;
+  }
+  return 0;
+}
