@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+void swap(ll *x,ll *y){
+	ll j=*y;
+	*y=*x;
+	*x=j;
+}
+ll max1 =(ll)1e9;
+int main(){
+  ll i,j,k,n,m,ct=0,t,ans=0;
+  cin>>t;
+  while(t--){
+  	cin>>n>>m;
+  	if((n+m)%3==0 && max(n,m)<=2*min(n,m)) cout<<"YES\n";
+  	else cout<<"NO\n";
+  }
+  return 0;
