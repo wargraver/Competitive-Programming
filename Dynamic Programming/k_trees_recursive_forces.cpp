@@ -17,18 +17,16 @@ ll mod = 1e9 + 7;
 ll max1 = (ll)1e9;
 ll a[1000] = {0}, k, max2;
 ll ways(ll n, ll m, ll ct) {
-	ct++;
 	if (n == 0) return 1;
 	else if (m == 0) return 0;
-	else if (ct > max2) return 0;
 	else {
 		ll res = 0;
 		for (ll i = 1; i <= m; i++) {
 			if (n >= i) {
-				res += ways(n - i, m, ct);
+				res += ways(n - i, m, ct) % mod;
 			}
 		}
-		return res;
+		return res % mod;
 	}
 
 }
@@ -43,7 +41,8 @@ int main() {
 	ll i, j, n, m, ct = 0, t, ans = 0;
 	cin >> n >> m >> k;
 	for (i = 1; i <= m; i++) a[i] = i;
-	max2 = (n - k) + 1;
-	cout << ways(n, m, 0);
+	ll m1 = ways(n, m, 0) % mod;
+	ll m2 = ways(n, k - 1, 0) % mod;
+	cout << m1 - m2 << endl;
 	return 0;
 }
