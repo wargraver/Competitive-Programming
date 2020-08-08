@@ -18,10 +18,14 @@ ll max1 = (ll)1e18;
 ll a[100005];
 string str1;
 ll cost(vector<char> vect[], vector<char> rev[], ll curr, ll prev, ll end, ll flag) {
-	ll m = lexicographical_compare(vect[prev].begin(), vect[prev].end(), vect[curr].begin(), vect[curr].end());
-	ll n = lexicographical_compare(vect[prev].begin(), vect[prev].end(), rev[curr].begin(), rev[curr].end());
-	ll j = lexicographical_compare(rev[prev].begin(), rev[prev].end(), vect[curr].begin(), vect[curr].end());
-	ll k = lexicographical_compare(rev[prev].begin(), rev[prev].end(), rev[curr].begin(), rev[curr].end());
+	ll m = 1;
+	ll n = 1;
+	ll j = 1;
+	ll k = 1;
+	if (vect[prev] > vect[curr]) m = 0;
+	if (vect[prev] > rev[curr]) n = 0;
+	if (rev[prev] > vect[curr]) j = 0;
+	if (rev[prev] > rev[curr]) k = 0;
 	if (flag == 1) {m = j; n = k;}
 	//cout << m << " " << n << " " << curr << " " << prev << endl;
 	if (curr == end) {
