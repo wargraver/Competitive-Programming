@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> countBits(int n) {
+        int i,j,k;
+        vector<int> vect;
+        vect.push_back(0);
+        if(n==0) return vect;
+        vect.push_back(1);
+        if(n==1) return vect;
+        vect.push_back(1);
+        if(n==2) return vect;
+        for(i=3;i<=n;i++){
+            j=(int)(log2(i));
+            j=pow(2,j);
+            cout<<j<<" ";
+            if(j>=vect.size()) vect.push_back(1);
+            else{
+                vect.push_back(vect[j]+vect[i-j]);
+            }
+        }
+        return vect;
+    }
+};
