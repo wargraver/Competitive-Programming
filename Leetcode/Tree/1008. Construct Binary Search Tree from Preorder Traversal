@@ -1,0 +1,24 @@
+class Solution {
+public:
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        return helper(preorder, 0, preorder.size()-1);        
+    }
+    TreeNode* helper(vector<int>& preorder, int left, int right){
+        if(left <= right){
+            TreeNode* root = new TreeNode(preorder[left]);
+            int rightStart = partition(preorder, left, right);
+            root->left = helper(preorder, left+1, rightStart-1);
+            root->right = helper(preorder, rightStart, right);
+            return root; 
+        }  
+        return NULL;
+    }
+    int partition(vector<int>& preorder, int left, int right){
+        for(int i = left+1; i <= right; i++){
+            if(preorder[left] < preorder[i]){
+                return i;
+            }
+        }
+        return right+1;
+    }
+};
