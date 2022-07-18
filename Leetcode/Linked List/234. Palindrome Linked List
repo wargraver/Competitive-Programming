@@ -1,0 +1,53 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int get_count_of_nodes(ListNode* node){
+        int ct=0;
+        while(node!=NULL){
+            ct++;
+            node=node->next;
+        }
+        return ct;
+    }
+    ListNode* get_mid_node(ListNode* node,int ct){
+        if(ct%2==0) ct=ct/2+1;
+        else ct = (ct+1)/2+1;
+        int kt=0;
+        while(kt!=ct){
+            kt++;
+            if(kt==ct) return node;
+            node=node->next;
+        }
+        return node;
+    }
+    ListNode* reverse_linked_list(ListNode* node,ListNode* prev){
+        if(node==NULL) return prev;
+        ListNode *temp = node->next;
+        node->next = prev;
+        return reverse_linked_list(temp,node);
+    }
+    bool isPalindrome(ListNode* head) {
+        ListNode *temp = head;
+        int no_of_nodes = get_count_of_nodes(temp);
+        ListNode *temp2 = get_mid_node(temp,no_of_nodes);
+        ListNode *temp3 = reverse_linked_list(temp2,NULL);
+        //cout<<temp3->val;
+        while(temp3!=NULL){
+            if(temp->val==temp3->val){
+                temp = temp->next;
+                temp3 = temp3->next;
+            }
+            else return false;
+        }
+        return true;
+    }
+};
